@@ -68,7 +68,7 @@ function Home() {
 
   const [questionsdata, setQuestionsdata] = useState([])
   const getQuestionsdata = () => {
-    fetch("http://localhost:8000/questionsdata")
+    fetch("https://backend-stack-overflow-clone.herokuapp.com//questionsdata")
       .then((data) => data.json())
       .then((qdata) => setQuestionsdata(qdata))
   }
@@ -133,7 +133,7 @@ function AllQuestions({ qdata }) {
 
   const [questionsdata, setQuestionsdata] = useState([])
   const getQuestionsdata = () => {
-    fetch("http://localhost:8000/questionsdata")
+    fetch("https://backend-stack-overflow-clone.herokuapp.com//questionsdata")
       .then((data) => data.json())
       .then((qdata) => setQuestionsdata(qdata))
   }
@@ -184,7 +184,7 @@ function TopQuestion() {
   const { id } = useParams()
   const [questionsdata, setQuestionsdata] = useState([])
   const getQuestionsdata = () => {
-    fetch("http://localhost:8000/questionsdata")
+    fetch("https://backend-stack-overflow-clone.herokuapp.com//questionsdata")
       .then((data) => data.json())
       .then((qdata) => setQuestionsdata(qdata))
   }
@@ -214,7 +214,7 @@ function TopQuestion() {
 
     const getQuestionsdata = () => {
       console.log("comment", newComment)
-      fetch("http://localhost:8000/questionsdata",
+      fetch("https://backend-stack-overflow-clone.herokuapp.com//questionsdata",
         {
           method: "PUT",
           body: JSON.stringify(newComment),
@@ -278,7 +278,7 @@ function AskQuestion() {
     }
 
     const getQuestionsdata = () => {
-      fetch("http://localhost:8000/questionsdata",
+      fetch("https://backend-stack-overflow-clone.herokuapp.com//questionsdata",
         {
           method: "POST",
           body: JSON.stringify(newQuestion),
