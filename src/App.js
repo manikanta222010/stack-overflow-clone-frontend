@@ -31,6 +31,9 @@ export default function App() {
           <Route path="/login">
             <Login />
           </Route>
+          <Route path="/forgot-password">
+            <ForgotPassword />
+          </Route>
           <Route path="/">
             <Home />
           </Route>
@@ -65,7 +68,7 @@ function Home() {
 
   const [questionsdata, setQuestionsdata] = useState([])
   const getQuestionsdata = () => {
-    fetch("https://backend-stack-overflow-clone.herokuapp.com/questionsdata")
+    fetch("http://localhost:8000/questionsdata")
       .then((data) => data.json())
       .then((qdata) => setQuestionsdata(qdata))
   }
@@ -130,7 +133,7 @@ function AllQuestions({ qdata }) {
 
   const [questionsdata, setQuestionsdata] = useState([])
   const getQuestionsdata = () => {
-    fetch("https://backend-stack-overflow-clone.herokuapp.com/questionsdata")
+    fetch("http://localhost:8000/questionsdata")
       .then((data) => data.json())
       .then((qdata) => setQuestionsdata(qdata))
   }
@@ -181,7 +184,7 @@ function TopQuestion() {
   const { id } = useParams()
   const [questionsdata, setQuestionsdata] = useState([])
   const getQuestionsdata = () => {
-    fetch("https://backend-stack-overflow-clone.herokuapp.com/questionsdata")
+    fetch("http://localhost:8000/questionsdata")
       .then((data) => data.json())
       .then((qdata) => setQuestionsdata(qdata))
   }
@@ -200,17 +203,18 @@ function TopQuestion() {
 
   const addComment = () => {
     const newComment = {
-      question,
-      body,
-      tags,
-      votes,
-      answers,
-      views,
+      question: qus.question,
+      body: qus.body,
+      tags: qus.tags,
+      votes: qus.votes,
+      answers: qus.answers,
+      views: qus.views,
       comment
     }
 
     const getQuestionsdata = () => {
-      fetch("https://backend-stack-overflow-clone.herokuapp.com/questionsdata",
+      console.log("comment", newComment)
+      fetch("http://localhost:8000/questionsdata",
         {
           method: "PUT",
           body: JSON.stringify(newComment),
@@ -274,7 +278,7 @@ function AskQuestion() {
     }
 
     const getQuestionsdata = () => {
-      fetch("https://backend-stack-overflow-clone.herokuapp.com/questionsdata",
+      fetch("http://localhost:8000/questionsdata",
         {
           method: "POST",
           body: JSON.stringify(newQuestion),
@@ -331,7 +335,7 @@ function AskQuestion() {
 
 // Autentication which need to be connect to backend API(incomplete)
 function Login() {
-
+  const history = useHistory();
   const { username } = useParams()
   const handleSubmit = () => {
     console.log(username)
@@ -343,10 +347,28 @@ function Login() {
       <input type="text" name="username" />
       <div>
         <label htmlFor="password">Password</label>
-        <span>Forgot Password?</span>
+        <span className="nav-tags" onClick={() => history.push("/forgot-password")}>Forgot Password?</span>
       </div>
       <input type="password" name="password" />
       <button type="submit">Log in</button>
+    </form>
+  )
+}
+
+// Autentication which need to be connect to backend API(incomplete)
+function ForgotPassword() {
+  const history = useHistory();
+  const { username } = useParams()
+  const handleSubmit = () => {
+    console.log(username)
+
+  }
+  return (
+    <form className="login-form" onSubmit={handleSubmit}>
+      <label htmlFor="username">Email</label>
+      <input type="text" name="username" className="f-input"/>
+      <span className="nav-tags" onClick={() => history.push("/login")}>Login</span>
+      <button type="submit">Send recovery mail</button>
     </form>
   )
 }

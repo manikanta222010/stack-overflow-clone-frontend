@@ -231,7 +231,9 @@ html{
 .login-form input{
     font-size: 16px;
 }
-
+.f-input{
+    margin-bottom: 8px !important;
+}
 .container h1{
     font-weight: 400;
 
