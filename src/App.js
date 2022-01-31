@@ -366,7 +366,7 @@ function ForgotPassword() {
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <label htmlFor="username">Email</label>
-      <input type="text" name="username" className="f-input"/>
+      <input type="text" name="username" className="f-input" />
       <span className="nav-tags" onClick={() => history.push("/login")}>Login</span>
       <button type="submit">Send recovery mail</button>
     </form>
