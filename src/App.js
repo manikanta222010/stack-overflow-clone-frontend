@@ -68,7 +68,7 @@ function Home() {
 
   const [questionsdata, setQuestionsdata] = useState([])
   const getQuestionsdata = () => {
-    fetch("https://backend-stack-overflow-clone.herokuapp.com//questionsdata")
+    fetch("https://backend-stack-overflow-clone.herokuapp.com/questionsdata")
       .then((data) => data.json())
       .then((qdata) => setQuestionsdata(qdata))
   }
